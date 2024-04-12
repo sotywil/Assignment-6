@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>UN Member Countries</title>
+</head>
+
+<body tabindex="-1">
+    <%- include('partials/navbar', {page: ' /userHistory' }) %>
+        <div class="container mx-auto p-4">
+            <div class="hero bg-base-300 rounded-box p-2">
+                <div class="hero-content text-center">
+                    <div class="max-w-md">
+                        <h1 class="text-5xl font-bold"><%= session.user.userName %></h1>
+                        <p class="py-6">User History: <%= session.user.email %></p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="overflow-x-auto overflow-y-hidden">
+                <table class="table table-zebra mt-8">
+                    <thead>
+                        <tr>
+                            <td>Login Date/Time</td>
+                            <td>Client Information</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% session.user.loginHistory.forEach(login => { %>
+                            <tr>
+                                <td>
+                                   <%= login.dateTime.toString() %> 
+                                </td>
+                                <td>
+                                  <%= login.userAgent %>  
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+</body>
+</html>
